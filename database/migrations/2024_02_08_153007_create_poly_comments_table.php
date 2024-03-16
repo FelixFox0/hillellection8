@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('poly_comments', function (Blueprint $table) {
+            $table->id();
+
+//            $table->string("commentable_type");
+//            $table->unsignedBigInteger("commentable_id");
+//            $table->index(["commentable_type", "commentable_id"]);
+//
+            $table->morphs('commentable');
+
+            $table->string('text');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('poly_comments');
+    }
+};

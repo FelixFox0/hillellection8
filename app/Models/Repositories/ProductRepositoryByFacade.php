@@ -14,7 +14,7 @@ class ProductRepositoryByFacade implements ProductRepositoryInterface
             ->select()
             ->join('oc_product', 'oc_product_to_category.product_id', '=', 'oc_product.product_id')
             ->where('oc_product_to_category.category_id', '=', $id)
-            ->get()
+//            ->get()
             ->toArray();
     }
 }
